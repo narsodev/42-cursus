@@ -6,7 +6,7 @@
 /*   By: ngonzale <ngonzale@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 20:35:52 by ngonzale          #+#    #+#             */
-/*   Updated: 2022/06/07 12:51:51 by ngonzale         ###   ########.fr       */
+/*   Updated: 2022/06/07 14:36:32 by ngonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,8 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 int		ft_printf(const char *str, ...);
 
 char	*get_next_line(int fd);
+
+int		**ft_create_bimatrix(size_t height, size_t width);
+void	ft_free_bimatrix(int **map, size_t size);
 
 #endif

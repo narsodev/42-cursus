@@ -6,7 +6,7 @@
 #    By: ngonzale <ngonzale@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/20 17:51:10 by ngonzale          #+#    #+#              #
-#    Updated: 2022/06/07 11:55:54 by ngonzale         ###   ########.fr        #
+#    Updated: 2022/06/07 15:27:31 by ngonzale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,21 +49,25 @@ NUMLEN_NAMES:= ft_uilen ft_uilen_base ft_ulllen_base
 NUMLEN_FILES:= $(addprefix $(NUMLEN_DIR)/, $(NUMLEN_NAMES))
 
 FT_PRINTF_DIR	:= ft_printf
-FT_PRINTF_NAMES:= ft_printf ft_types ft_flags ft_flag_hash \
+FT_PRINTF_NAMES	:= ft_printf ft_types ft_flags ft_flag_hash \
 	ft_flag_plus ft_flag_space
-FT_PRINTF_FILES:= $(addprefix $(FT_PRINTF_DIR)/, $(FT_PRINTF_NAMES)) 
+FT_PRINTF_FILES	:= $(addprefix $(FT_PRINTF_DIR)/, $(FT_PRINTF_NAMES)) 
 
 GNL_DIR		:= ft_gnl
 GNL_NAMES	:= get_next_line get_next_line_utils
 GNL_FILES	:= $(addprefix $(GNL_DIR)/, $(GNL_NAMES)) 
 
+MATH_DIR		:= ft_math
+MATH_NAMES		:= ft_create_bimatrix ft_free_bimatrix
+MATH_FILES		:= $(addprefix $(MATH_DIR)/, $(MATH_NAMES)) 
+
 SRCS		:= $(addsuffix .c, $(addprefix $(SRC_DIR)/, $(IS_FILES) \
 	$(LST_FILES) $(MEM_FILES) $(PUT_FILES) $(STR_FILES) $(TO_FILES) \
-	$(NUMLEN_FILES) $(FT_PRINTF_FILES) $(GNL_FILES)))
+	$(NUMLEN_FILES) $(FT_PRINTF_FILES) $(GNL_FILES) $(MATH_FILES)))
 
 OBJS		:= $(addsuffix .o, $(addprefix $(OBJ_DIR)/, $(IS_FILES) \
 	$(LST_FILES) $(MEM_FILES) $(PUT_FILES) $(STR_FILES) $(TO_FILES) \
-	$(NUMLEN_FILES) $(FT_PRINTF_FILES) $(GNL_FILES)))
+	$(NUMLEN_FILES) $(FT_PRINTF_FILES) $(GNL_FILES) $(MATH_FILES)))
 
 SRCS_NUM	:= $(words $(SRCS))
 OBJS_CREATED:= $(shell if [ -d $(OBJ_DIR) ]; then ls -l $(OBJ_DIR)/* | grep -c "\.o"; else echo 0; fi)
@@ -97,7 +101,7 @@ $(NAME):	$(OBJS)
 	@ar crs $(NAME) $^
 
 
-$(OBJS): $(OBJ_DIR)/%.o : $(SRC_DIR)/%.c | $(addprefix $(OBJ_DIR)/, $(IS_DIR) $(LST_DIR) $(LST_DIR) $(MEM_DIR) $(PUT_DIR) $(STR_DIR) $(TO_DIR) $(NUMLEN_DIR) $(FT_PRINTF_DIR) $(GNL_DIR))
+$(OBJS): $(OBJ_DIR)/%.o : $(SRC_DIR)/%.c | $(addprefix $(OBJ_DIR)/, $(IS_DIR) $(LST_DIR) $(LST_DIR) $(MEM_DIR) $(PUT_DIR) $(STR_DIR) $(TO_DIR) $(NUMLEN_DIR) $(FT_PRINTF_DIR) $(GNL_DIR) $(MATH_DIR))
 	@$(eval OBJS_CREATED = $(shell expr $(OBJS_CREATED) + 1))
 	@printf "Making object $(OBJS_CREATED)/$(SRCS_NUM)...\r"
 	@if [ $(OBJS_CREATED) = $(SRCS_NUM) ]; then echo ""; fi
@@ -129,6 +133,9 @@ $(OBJ_DIR)/$(FT_PRINTF_DIR):
 	@mkdir -p $@
 
 $(OBJ_DIR)/$(GNL_DIR):
+	@mkdir -p $@
+
+$(OBJ_DIR)/$(MATH_DIR):
 	@mkdir -p $@
 
 .PHONY: all obj_dirs clean fclean re
