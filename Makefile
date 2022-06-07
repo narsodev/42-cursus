@@ -6,7 +6,7 @@
 #    By: ngonzale <ngonzale@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/20 17:51:10 by ngonzale          #+#    #+#              #
-#    Updated: 2022/06/03 17:27:10 by ngonzale         ###   ########.fr        #
+#    Updated: 2022/06/07 11:55:54 by ngonzale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,8 +54,8 @@ FT_PRINTF_NAMES:= ft_printf ft_types ft_flags ft_flag_hash \
 FT_PRINTF_FILES:= $(addprefix $(FT_PRINTF_DIR)/, $(FT_PRINTF_NAMES)) 
 
 GNL_DIR		:= ft_gnl
-GNL_NAMES	:= get_next_line
-GNL_FILES:= $(addprefix $(GNL_DIR)/, $(GNL_NAMES)) 
+GNL_NAMES	:= get_next_line get_next_line_utils
+GNL_FILES	:= $(addprefix $(GNL_DIR)/, $(GNL_NAMES)) 
 
 SRCS		:= $(addsuffix .c, $(addprefix $(SRC_DIR)/, $(IS_FILES) \
 	$(LST_FILES) $(MEM_FILES) $(PUT_FILES) $(STR_FILES) $(TO_FILES) \

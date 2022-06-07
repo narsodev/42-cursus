@@ -6,13 +6,14 @@
 /*   By: ngonzale <ngonzale@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 23:42:25 by ngonzale          #+#    #+#             */
-/*   Updated: 2022/06/03 17:42:50 by ngonzale         ###   ########.fr       */
+/*   Updated: 2022/06/07 12:50:15 by ngonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+#include "get_next_line_utils.h"
 #include <unistd.h>
 #include <stdlib.h>
-#include "libft.h"
 
 char	*get_until(char **buffer, int until)
 {
@@ -27,7 +28,7 @@ char	*get_until(char **buffer, int until)
 	if (!line)
 		return (0);
 	aux_buffer = ft_substr(*buffer, n_ptr - *buffer + 1,
-			ft_strlen(*buffer) - (n_ptr - *buffer));
+			ft_strlen_protected(*buffer) - (n_ptr - *buffer));
 	free(*buffer);
 	if (!aux_buffer)
 		return (0);
@@ -44,8 +45,7 @@ char	*read_and_find(int fd, char **buffer,
 	*bytes_read = read(fd, buffer_read, BUFFER_SIZE);
 	if (*bytes_read == -1)
 		return (0);
-	buffer_aux = ft_strjoin(*buffer, buffer_read);
-	ft_printf("no fallo");
+	buffer_aux = ft_strjoin_sizeprotected(*buffer, buffer_read);
 	if (!buffer_aux)
 		return (0);
 	free(*buffer);
@@ -76,7 +76,7 @@ char	*read_line(int fd, char **buffer)
 	}
 	if (!line && *buffer && **buffer)
 	{
-		line = ft_substr(*buffer, 0, ft_strlen(*buffer));
+		line = ft_substr_sizeprotected(*buffer, 0, ft_strlen(*buffer));
 		free(*buffer);
 		*buffer = 0;
 	}
