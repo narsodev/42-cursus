@@ -6,7 +6,7 @@
 #    By: ngonzale <ngonzale@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/20 17:51:10 by ngonzale          #+#    #+#              #
-#    Updated: 2022/06/09 01:02:24 by ngonzale         ###   ########.fr        #
+#    Updated: 2022/06/14 13:32:27 by ngonzale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,13 +62,19 @@ MATH_DIR		:= ft_math
 MATH_NAMES		:= ft_create_bimatrix ft_free_bimatrix
 MATH_FILES		:= $(addprefix $(MATH_DIR)/, $(MATH_NAMES)) 
 
+FILE_DIR		:= ft_file
+FILE_NAMES		:= ft_read_file
+FILE_FILES		:= $(addprefix $(FILE_DIR)/, $(FILE_NAMES)) 
+
 SRCS		:= $(addsuffix .c, $(addprefix $(SRC_DIR)/, $(IS_FILES) \
 	$(LST_FILES) $(MEM_FILES) $(PUT_FILES) $(STR_FILES) $(TO_FILES) \
-	$(NUMLEN_FILES) $(FT_PRINTF_FILES) $(GNL_FILES) $(MATH_FILES)))
+	$(NUMLEN_FILES) $(FT_PRINTF_FILES) $(GNL_FILES) $(MATH_FILES)   \
+	$(FILE_FILES)))
 
 OBJS		:= $(addsuffix .o, $(addprefix $(OBJ_DIR)/, $(IS_FILES) \
 	$(LST_FILES) $(MEM_FILES) $(PUT_FILES) $(STR_FILES) $(TO_FILES) \
-	$(NUMLEN_FILES) $(FT_PRINTF_FILES) $(GNL_FILES) $(MATH_FILES)))
+	$(NUMLEN_FILES) $(FT_PRINTF_FILES) $(GNL_FILES) $(MATH_FILES)   \
+	$(FILE_FILES)))
 
 SRCS_NUM	:= $(words $(SRCS))
 OBJS_CREATED:= $(shell if [ -d $(OBJ_DIR) ]; then ls -l $(OBJ_DIR)/* | grep -c "\.o"; else echo 0; fi)
@@ -102,7 +108,7 @@ $(NAME):	$(OBJS)
 	@ar crs $(NAME) $^
 
 
-$(OBJS): $(OBJ_DIR)/%.o : $(SRC_DIR)/%.c | $(addprefix $(OBJ_DIR)/, $(IS_DIR) $(LST_DIR) $(LST_DIR) $(MEM_DIR) $(PUT_DIR) $(STR_DIR) $(TO_DIR) $(NUMLEN_DIR) $(FT_PRINTF_DIR) $(GNL_DIR) $(MATH_DIR))
+$(OBJS): $(OBJ_DIR)/%.o : $(SRC_DIR)/%.c | $(addprefix $(OBJ_DIR)/, $(IS_DIR) $(LST_DIR) $(LST_DIR) $(MEM_DIR) $(PUT_DIR) $(STR_DIR) $(TO_DIR) $(NUMLEN_DIR) $(FT_PRINTF_DIR) $(GNL_DIR) $(MATH_DIR) $(FILE_DIR))
 	@$(eval OBJS_CREATED = $(shell expr $(OBJS_CREATED) + 1))
 	@printf "Making object $(OBJS_CREATED)/$(SRCS_NUM)...\r"
 	@if [ $(OBJS_CREATED) = $(SRCS_NUM) ]; then echo ""; fi
@@ -137,6 +143,9 @@ $(OBJ_DIR)/$(GNL_DIR):
 	@mkdir -p $@
 
 $(OBJ_DIR)/$(MATH_DIR):
+	@mkdir -p $@
+
+$(OBJ_DIR)/$(FILE_DIR):
 	@mkdir -p $@
 
 .PHONY: all obj_dirs clean fclean re

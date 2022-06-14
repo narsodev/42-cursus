@@ -6,7 +6,7 @@
 /*   By: ngonzale <ngonzale@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 20:35:52 by ngonzale          #+#    #+#             */
-/*   Updated: 2022/06/09 01:01:53 by ngonzale         ###   ########.fr       */
+/*   Updated: 2022/06/14 13:28:19 by ngonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,7 @@ void	ft_free_bimatrix(int **map, size_t size);
 
 int		ft_strsome(char *str, int (*f)(size_t, char));
 int		ft_strevery(char *str, int (*f)(size_t, char));
+
+char	*ft_read_file(char *filename);
 
 #endif
