@@ -6,7 +6,7 @@
 #    By: ngonzale <ngonzale@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/20 17:51:10 by ngonzale          #+#    #+#              #
-#    Updated: 2022/06/14 13:32:27 by ngonzale         ###   ########.fr        #
+#    Updated: 2022/06/22 19:20:55 by ngonzale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ IS_FILES	:= $(addprefix $(IS_DIR)/, $(IS_NAMES))
 
 LST_DIR		:= ft_lst
 LST_NAMES	:= ft_lstadd_back ft_lstadd_front ft_lstclear ft_lstdelone \
-			   ft_lstiter ft_lstlast ft_lstmap ft_lstnew ft_lstsize
+			   ft_lstiter ft_lstlast ft_lstmap ft_lstnew ft_lstsize \
+			   ft_lstfind
 LST_FILES	:= $(addprefix $(LST_DIR)/, $(LST_NAMES)) 
 
 MEM_DIR		:= ft_mem
