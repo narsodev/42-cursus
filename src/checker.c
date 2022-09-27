@@ -3,15 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngonzale <ngonzale@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: ngonzale <ngonzale@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 16:14:50 by ngonzale          #+#    #+#             */
-/*   Updated: 2022/06/22 18:52:10 by ngonzale         ###   ########.fr       */
+/*   Updated: 2022/09/27 20:38:05 by ngonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "so_long.h"
+#include <stdlib.h>
+
+int	ft_check_args(int argc, char **argv)
+{
+	char	*extension;
+	size_t	arg_len;
+
+	if (argc != 2)
+	{
+		ft_printf("Error\nmap filename required\n");
+		return (0);
+	}
+	arg_len = ft_strlen(argv[1]);
+	extension = ft_substr(argv[1], arg_len - 4, arg_len);
+	if (!extension)
+		return (0);
+	if (ft_strncmp(".ber", extension, ft_strlen(extension)))
+	{
+		free(extension);
+		ft_printf("Error\nbad filename extension\n");
+		return (0);
+	}
+	free(extension);
+	return (1);
+}
 
 int	check_map_size(t_map *map)
 {
@@ -53,6 +78,6 @@ int	check_map(t_map *map)
 {
 	if (map && check_map_size(map) && check_map_content(map))
 		return (1);
-	ft_printf("Error\n");
+	ft_printf("Error\nbad map content\n");
 	return (0);
 }

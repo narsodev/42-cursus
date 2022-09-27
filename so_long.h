@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngonzale <ngonzale@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: ngonzale <ngonzale@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 19:46:42 by ngonzale          #+#    #+#             */
-/*   Updated: 2022/06/22 22:48:28 by ngonzale         ###   ########.fr       */
+/*   Updated: 2022/09/27 20:22:25 by ngonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ t_map		*parse_map(char *mapfile);
 
 // Checker
 int			check_map(t_map *map);
+int			ft_check_args(int argc, char **argv);
 
 // Checker utils
 int			char_is_wall(size_t i, char c);

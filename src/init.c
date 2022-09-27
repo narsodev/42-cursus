@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngonzale <ngonzale@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: ngonzale <ngonzale@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 01:55:33 by ngonzale          #+#    #+#             */
-/*   Updated: 2022/06/22 21:41:05 by ngonzale         ###   ########.fr       */
+/*   Updated: 2022/09/27 20:39:12 by ngonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,12 @@ t_game	*create_game(char *mapfile)
 		return (NULL);
 	set_game_default_values(game);
 	game->map = parse_map(mapfile);
-	if (check_map(game->map))
+	if (game->map)
 		game->mlx = mlx_init(game->map->width * TEXTURE_SIZE,
 				game->map->height * TEXTURE_SIZE, "MLX42", true);
 	if (game->mlx)
-	{
 		game->img = mlx_new_image(game->mlx, game->map->width * TEXTURE_SIZE,
 				game->map->height * TEXTURE_SIZE);
-	}
 	if (game->img)
 	{
 		create_textures(game);

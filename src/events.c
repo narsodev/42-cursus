@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngonzale <ngonzale@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: ngonzale <ngonzale@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 17:16:56 by ngonzale          #+#    #+#             */
-/*   Updated: 2022/06/22 22:39:12 by ngonzale         ###   ########.fr       */
+/*   Updated: 2022/09/27 20:40:04 by ngonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 void	end_game(t_game *game)
 {
 	free_game(&game);
-	system("leaks -q a.out");
 	exit(EXIT_FAILURE);
 }
 

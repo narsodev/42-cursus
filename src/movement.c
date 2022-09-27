@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngonzale <ngonzale@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: ngonzale <ngonzale@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 01:27:43 by ngonzale          #+#    #+#             */
-/*   Updated: 2022/06/22 23:51:39 by ngonzale         ###   ########.fr       */
+/*   Updated: 2022/09/27 20:31:56 by ngonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	move_players_helper(t_game *game, t_list **lst, int x, int y)
 	}
 }
 
+// Do not free content, only lst
 void	ft_fake_dellst(void *foo)
 {
 	(void)foo;
