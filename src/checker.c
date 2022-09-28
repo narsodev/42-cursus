@@ -6,7 +6,7 @@
 /*   By: ngonzale <ngonzale@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 16:14:50 by ngonzale          #+#    #+#             */
-/*   Updated: 2022/09/27 20:38:05 by ngonzale         ###   ########.fr       */
+/*   Updated: 2022/09/28 21:21:41 by ngonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_check_args(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		ft_printf("Error\nmap filename required\n");
+		ft_putstr_fd("Error\nmap filename required\n", 2);
 		return (0);
 	}
 	arg_len = ft_strlen(argv[1]);
@@ -31,7 +31,7 @@ int	ft_check_args(int argc, char **argv)
 	if (ft_strncmp(".ber", extension, ft_strlen(extension)))
 	{
 		free(extension);
-		ft_printf("Error\nbad filename extension\n");
+		ft_putstr_fd("Error\nbad filename extension\n", 2);
 		return (0);
 	}
 	free(extension);
@@ -78,6 +78,6 @@ int	check_map(t_map *map)
 {
 	if (map && check_map_size(map) && check_map_content(map))
 		return (1);
-	ft_printf("Error\nbad map content\n");
+	ft_putstr_fd("Error\nbad map content\n", 2);
 	return (0);
 }
