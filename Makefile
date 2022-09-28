@@ -1,12 +1,10 @@
 NAME		:= so_long
-BONUS		:= so_long
 
 SRC_DIR		:= src
 OBJ_DIR		:= obj
 
 FILES		:= main checker checker_utils events free init movement parser \
 				player_movement player_utils player render
-
 SRCS		:= $(addsuffix .c, $(addprefix $(SRC_DIR)/, $(FILES)))
 OBJS		:= $(addsuffix .o, $(addprefix $(OBJ_DIR)/, $(FILES)))
 
@@ -39,7 +37,7 @@ fclean:		clean
 re:			fclean all
 
 $(NAME):	$(OBJS) | $(LIBFT)/libft.a $(MLX42)/libmlx42.a
-	gcc $(LIB) -o $(NAME) $^
+	gcc $(LIB) -o $@ $^
 
 $(LIBFT)/libft.a:
 	make -C $(LIBFT)

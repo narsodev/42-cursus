@@ -6,7 +6,7 @@
 /*   By: ngonzale <ngonzale@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 01:55:33 by ngonzale          #+#    #+#             */
-/*   Updated: 2022/09/27 20:39:12 by ngonzale         ###   ########.fr       */
+/*   Updated: 2022/09/27 22:48:39 by ngonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	set_game_default_values(t_game *game)
 	game->n_c = 0;
 	game->mov_x = 0;
 	game->mov_y = 0;
+	mlx_set_setting(MLX_STRETCH_IMAGE, 1);
 }
 
 void	create_textures(t_game *game)

@@ -6,7 +6,7 @@
 /*   By: ngonzale <ngonzale@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 19:46:42 by ngonzale          #+#    #+#             */
-/*   Updated: 2022/09/27 20:22:25 by ngonzale         ###   ########.fr       */
+/*   Updated: 2022/09/27 22:31:24 by ngonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 # include <stddef.h>
 # include "MLX42.h"
 
-# define TEXTURE_SIZE 128
-# define PLAYER_TEXTURE "textures/player128x128.png"
-# define COIN_TEXTURE "textures/collectible128x128.png"
-# define WALL_TEXTURE "textures/wall128x128.png"
-# define FLOOR_TEXTURE "textures/floor128x128.png"
-# define EXIT_TEXTURE "textures/exit128x128.png"
+# define TEXTURE_SIZE 256
+# define PLAYER_TEXTURE "textures/player.png"
+# define COIN_TEXTURE "textures/collectible.png"
+# define WALL_TEXTURE "textures/wall.png"
+# define FLOOR_TEXTURE "textures/floor.png"
+# define EXIT_TEXTURE "textures/exit.png"
 
 # define UP -1
 # define LEFT -1
