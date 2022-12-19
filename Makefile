@@ -3,7 +3,7 @@ NAME		:= push_swap
 SRC_DIR		:= src
 OBJ_DIR		:= obj
 
-FILES		:= main move check move sort stack
+FILES		:= main move check move sort stack container input move_stack
 SRCS		:= $(addsuffix .c, $(addprefix $(SRC_DIR)/, $(FILES)))
 OBJS		:= $(addsuffix .o, $(addprefix $(OBJ_DIR)/, $(FILES)))
 
@@ -37,7 +37,7 @@ $(NAME):	$(OBJS) | $(LIBFT)/libft.a
 $(LIBFT)/libft.a:
 	make -C $(LIBFT)
 
-$(OBJS): $(OBJ_DIR)/%.o : $(SRC_DIR)/%.c | $(OBJ_DIR)
+$(OBJ_DIR)/%.o : $(SRC_DIR)/%.c | $(OBJ_DIR)
 	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
 $(OBJ_DIR):

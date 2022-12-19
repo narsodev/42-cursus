@@ -6,37 +6,86 @@
 /*   By: ngonzale <ngonzale@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 20:46:08 by ngonzale          #+#    #+#             */
-/*   Updated: 2022/09/29 21:38:59 by ngonzale         ###   ########.fr       */
+/*   Updated: 2022/10/18 21:56:04 by ngonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "libft.h"
 
-t_stack	*ft_move_rotate(t_stack *stack)
+void	ft_move_rotate_reverse(t_stack **stack)
 {
 	t_stack	*first;
 	t_stack	*new_first;
+	t_stack	*ptr;
 
-	first = stack;
-	while (stack->next->next)
-		stack = stack->next;
-	new_first = stack->next;
-	stack->next = NULL;
+	ptr = *stack;
+	first = ptr;
+	while (ptr->next->next)
+	{
+		ptr->position++;
+		ptr = ptr->next;
+	}
+	ptr->position++;
+	new_first = ptr->next;
+	new_first->position = 1;
+	ptr->next = NULL;
 	new_first->next = first;
-	return (new_first);
+	*stack = new_first;
 }
 
-t_stack	*ft_move_rotate_reverse(t_stack *stack)
+void	ft_move_rotate(t_stack **stack)
 {
 	t_stack	*first;
 	t_stack	*new_first;
+	t_stack	*ptr;
 
-	first = stack;
-	new_first = stack->next;
-	while (stack->next)
-		stack = stack->next;
-	stack->next = first;
+	ptr = *stack;
+	first = ptr;
+	new_first = ptr->next;
+	while (ptr->next)
+	{
+		ptr->position--;
+		ptr = ptr->next;
+	}
+	ptr->position--;
+	ptr->next = first;
 	first->next = NULL;
-	return (new_first);
+	first->position = ptr->position + 1;
+	*stack = new_first;
+}
+
+void	ft_push(t_stack **src, t_stack **dst)
+{
+	t_stack	*first_src;
+	t_stack	*tmp;
+
+	first_src = *src;
+	tmp = first_src->next;
+	while (tmp)
+	{
+		tmp->position--;
+		tmp = tmp->next;
+	}
+	*src = (*src)->next;
+	first_src->next = *dst;
+	*dst = first_src;
+	tmp = (*dst)->next;
+	while (tmp)
+	{
+		tmp->position++;
+		tmp = tmp->next;
+	}
+}
+
+void	ft_swap(t_stack **stack)
+{
+	t_stack	*first;
+
+	first = *stack;
+	first->position = 2;
+	*stack = (*stack)->next;
+	(*stack)->position = 1;
+	first->next = (*stack)->next;
+	(*stack)->next = first;
 }

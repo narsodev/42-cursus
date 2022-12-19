@@ -6,7 +6,7 @@
 /*   By: ngonzale <ngonzale@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 21:47:55 by ngonzale          #+#    #+#             */
-/*   Updated: 2022/09/29 22:03:11 by ngonzale         ###   ########.fr       */
+/*   Updated: 2022/10/04 20:54:28by ngonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 #include "libft.h"
 #include <stdlib.h>
 
-t_stack	*ft_create_stack_item(char *num_str);
+t_stack	*ft_create_stack_item(char *num_str, int position);
 void	ft_assign_index(t_stack *stack, t_stack *item);
 void	ft_free_stack(t_stack *stack);
+int		ft_is_repeated(t_stack *stack, t_stack *item);
 
 void	ft_print_stack(t_stack *stack)
 {
@@ -47,21 +48,23 @@ void	ft_print_stack(t_stack *stack)
 	ft_printf("\n");
 }
 
-t_stack	*ft_create_stack(int n_strs, char **nums_strs)
+t_stack	*ft_create_stack(char **nums_strs)
 {
 	t_stack	*stack;
 	t_stack	*stack_cur;
 	t_stack	*stack_last;
 	int		i;
 
-	stack = ft_create_stack_item(nums_strs[0]);
+	stack = ft_create_stack_item(nums_strs[0], 1);
+	// check here
 	stack_last = stack;
 	i = 1;
-	while (i < n_strs)
+	while (nums_strs[i])
 	{
-		stack_cur = ft_create_stack_item(nums_strs[i]);
-		if (!stack_cur)
+		stack_cur = ft_create_stack_item(nums_strs[i], i + 1);
+		if (!stack_cur || ft_is_repeated(stack, stack_cur))
 		{
+			ft_putstr_fd("Error\n", 2);
 			ft_free_stack(stack);
 			return (NULL);
 		}
@@ -73,7 +76,7 @@ t_stack	*ft_create_stack(int n_strs, char **nums_strs)
 	return (stack);
 }
 
-t_stack	*ft_create_stack_item(char *num_str)
+t_stack	*ft_create_stack_item(char *num_str, int position)
 {
 	t_stack	*stack;
 	int		n;
@@ -89,7 +92,7 @@ t_stack	*ft_create_stack_item(char *num_str)
 		return (NULL);
 	stack->value = n;
 	stack->index = 1;
-	stack->position = 0;
+	stack->position = position;
 	return (stack);
 }
 
@@ -103,6 +106,20 @@ void	ft_assign_index(t_stack *stack, t_stack *item)
 			item->index += 1;
 		stack = stack->next;
 	}
+}
+
+int	ft_is_repeated(t_stack *stack, t_stack *item)
+{
+	while (stack)
+	{
+		if (stack->value == item->value)
+		{
+			free(item);
+			return (1);
+		}
+		stack = stack->next;
+	}
+	return (0);
 }
 
 void	ft_free_stack(t_stack *stack)
