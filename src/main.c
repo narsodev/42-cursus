@@ -6,7 +6,7 @@
 /*   By: ngonzale <ngonzale@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 19:26:16 by ngonzale          #+#    #+#             */
-/*   Updated: 2023/01/01 13:15:12 by ngonzale         ###   ########.fr       */
+/*   Updated: 2023/01/16 21:06:51 by ngonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	ft_is_ordered(t_container *container)
 {
 	t_stack	*tmp;
 
+	ft_printf("order ");
 	if (container->stack_b)
 		return (0);
 	tmp = container->stack_a;
@@ -50,7 +51,9 @@ void	ft_radix(t_container *container, int size)
 		while (container->stack_b)
 			ft_pa(container, 1);
 		i++;
+		ft_printf("eo\n");
 	}
+	ft_printf("termino\n");
 }
 
 int	ft_count_words(char *str, char c)
@@ -74,14 +77,25 @@ int	ft_count_words(char *str, char c)
 	return (count);
 }
 
+void ft_void(void){
+	system("leaks -q push_swap");
+}
+
 int	main(int argc, char **argv)
 {
+	atexit(ft_void);
 	t_container	*container;
 	char		**strs;
+	int			i;
 
 	strs = ft_get_strs(argc, argv);
 	if (!strs)
 		return (EXIT_FAILURE);
+	if (!strs[0])
+	{
+		free(strs);
+		return (EXIT_FAILURE);
+	}
 	container = ft_create_container(strs);
 	if (!container)
 		return (EXIT_FAILURE);
@@ -89,5 +103,13 @@ int	main(int argc, char **argv)
 		ft_radix(container, ft_count_words(argv[1], ' '));
 	else
 		ft_radix(container, argc - 1);
+	i = 0;
+	while (strs[i])
+	{
+		free(strs[i]);
+		i++;
+	}
+	free(strs);
+	ft_free_container(container);
 	return (0);
 }

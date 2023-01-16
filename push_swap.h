@@ -6,7 +6,7 @@
 /*   By: ngonzale <ngonzale@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 19:30:33 by ngonzale          #+#    #+#             */
-/*   Updated: 2023/01/16 20:23:12 by ngonzale         ###   ########.fr       */
+/*   Updated: 2023/01/16 20:53:08 by ngonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ char		**ft_get_strs(int argc, char **argv);
 
 // Container
 t_container	*ft_create_container(char **strs);
+void		ft_free_container(t_container *container);
 
 // Stack
 t_stack		*ft_create_stack(char **nums_strs);

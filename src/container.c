@@ -6,7 +6,7 @@
 /*   By: ngonzale <ngonzale@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 19:32:17 by ngonzale          #+#    #+#             */
-/*   Updated: 2022/10/18 21:09:59 by ngonzale         ###   ########.fr       */
+/*   Updated: 2023/01/16 20:59:43 by ngonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,11 @@ int	ft_count_stack(t_stack *stack)
 		count++;
 	}
 	return (count);
+}
+
+void	ft_free_container(t_container *container)
+{
+	ft_free_stack(container->stack_a);
+	ft_free_stack(container->stack_b);
+	free(container);
 }
