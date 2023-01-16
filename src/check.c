@@ -6,7 +6,7 @@
 /*   By: ngonzale <ngonzale@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 21:50:15 by ngonzale          #+#    #+#             */
-/*   Updated: 2022/09/29 21:56:14 by ngonzale         ###   ########.fr       */
+/*   Updated: 2023/01/01 13:15:07 by ngonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,7 @@ int	check_num(int n, char *num_str)
 	if (*num_str != '-' && !ft_isdigit(*num_str))
 		return (0);
 	str_len = ft_strlen(num_str);
-	if (*num_str == '-' && str_len > 11)
-		return (0);
-	if (str_len > 10)
+	if ((n == 0 || n == -1) && str_len > 2)
 		return (0);
 	i = 1;
 	while (ft_isdigit(num_str[i]))

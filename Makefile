@@ -32,7 +32,7 @@ fclean:		clean
 re:			fclean all
 
 $(NAME):	$(OBJS) | $(LIBFT)/libft.a
-	gcc $(LIB) -o $@ $^
+	gcc $^ $(LIB) -g -o $@
 
 $(LIBFT)/libft.a:
 	make -C $(LIBFT)

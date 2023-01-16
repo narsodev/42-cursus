@@ -6,7 +6,7 @@
 /*   By: ngonzale <ngonzale@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 21:47:55 by ngonzale          #+#    #+#             */
-/*   Updated: 2022/10/04 20:54:28by ngonzale         ###   ########.fr       */
+/*   Updated: 2023/01/01 13:15:47 by ngonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,35 +19,6 @@ void	ft_assign_index(t_stack *stack, t_stack *item);
 void	ft_free_stack(t_stack *stack);
 int		ft_is_repeated(t_stack *stack, t_stack *item);
 
-void	ft_print_stack(t_stack *stack)
-{
-	t_stack	*stack_cur;
-
-	ft_printf("Stack contains:\n");
-	stack_cur = stack;
-	ft_printf("\tvalue:\t");
-	while (stack_cur)
-	{
-		ft_printf("\t%d", stack_cur->value);
-		stack_cur = stack_cur->next;
-	}
-	ft_printf("\n\tindex:\t");
-	stack_cur = stack;
-	while (stack_cur)
-	{
-		ft_printf("\t[%d]", stack_cur->index);
-		stack_cur = stack_cur->next;
-	}
-	stack_cur = stack;
-	ft_printf("\n\tposition:");
-	while (stack_cur)
-	{
-		ft_printf("\t<%d>", stack_cur->position);
-		stack_cur = stack_cur->next;
-	}
-	ft_printf("\n");
-}
-
 t_stack	*ft_create_stack(char **nums_strs)
 {
 	t_stack	*stack;
@@ -56,7 +27,8 @@ t_stack	*ft_create_stack(char **nums_strs)
 	int		i;
 
 	stack = ft_create_stack_item(nums_strs[0], 1);
-	// check here
+	if (!stack)
+		return (NULL);
 	stack_last = stack;
 	i = 1;
 	while (nums_strs[i])
@@ -83,10 +55,7 @@ t_stack	*ft_create_stack_item(char *num_str, int position)
 
 	n = ft_atoi(num_str);
 	if (!check_num(n, num_str))
-	{
-		ft_putstr_fd("Error\n", 2);
 		return (NULL);
-	}
 	stack = ft_calloc(1, sizeof(t_stack));
 	if (!stack)
 		return (NULL);

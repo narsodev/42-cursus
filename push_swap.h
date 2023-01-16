@@ -6,7 +6,7 @@
 /*   By: ngonzale <ngonzale@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 19:30:33 by ngonzale          #+#    #+#             */
-/*   Updated: 2022/10/18 20:39:41 by ngonzale         ###   ########.fr       */
+/*   Updated: 2023/01/16 20:23:12 by ngonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ void		ft_swap(t_stack **stack);
 void		ft_pa(t_container *container, int print);
 void		ft_pb(t_container *container, int print);
 void		ft_sa(t_container *container, int print);
-void		ft_sb(t_container *container, int print);
+// void		ft_sb(t_container *container, int print);
 void		ft_ra(t_container *container, int print);
-void		ft_rb(t_container *container, int print);
+// void		ft_rb(t_container *container, int print);
 void		ft_rra(t_container *container, int print);
-void		ft_rrb(t_container *container, int print);
+// void		ft_rrb(t_container *container, int print);
 
 // Check
 int			check_num(int n, char *num_str);
