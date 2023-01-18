@@ -6,7 +6,7 @@
 /*   By: ngonzale <ngonzale@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 19:26:16 by ngonzale          #+#    #+#             */
-/*   Updated: 2023/01/18 20:50:42 by ngonzale         ###   ########.fr       */
+/*   Updated: 2023/01/18 21:19:41 by ngonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,14 +104,14 @@ int	main(int argc, char **argv)
 	}
 	container = ft_create_container(strs);
 	if (!container)
+		return (ft_free_strs(strs), EXIT_FAILURE);
+	if (!ft_is_ordered(container))
 	{
-		ft_free_strs(strs);
-		return (EXIT_FAILURE);
+		if (argc == 2)
+			ft_order(container, ft_count_words(argv[1], ' '));
+		else
+			ft_order(container, argc - 1);
 	}
-	if (argc == 2)
-		ft_order(container, ft_count_words(argv[1], ' '));
-	else
-		ft_order(container, argc - 1);
 	ft_free_strs(strs);
 	ft_free_container(container);
 	return (0);

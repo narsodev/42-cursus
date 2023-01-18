@@ -20,10 +20,10 @@ void	ft_sort_three(t_container *container)
 	int		v3;
 
 	sa = container->stack_a;
-	v1 = sa->value;
-	v2 = sa->next->value;
-	v3 = sa->next->next->value;
-	if (v1 < v2 && v1 < v3)
+	v1 = sa->index;
+	v2 = sa->next->index;
+	v3 = sa->next->next->index;
+	if (v1 < v2 && v1 < v3 && v3 < v2)
 	{
 		ft_rra(container, 1);
 		ft_sa(container, 1);
@@ -52,6 +52,6 @@ void	ft_sort_five(t_container *container)
 	ft_sort_three(container);
 	ft_pa(container, 1);
 	ft_pa(container, 1);
-	if (container->stack_a->index != 0)
+	if (container->stack_a->index != 1)
 		ft_sa(container, 1);
 }
