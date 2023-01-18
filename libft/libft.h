@@ -6,7 +6,7 @@
 /*   By: ngonzale <ngonzale@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 20:35:52 by ngonzale          #+#    #+#             */
-/*   Updated: 2022/06/22 19:22:42 by ngonzale         ###   ########.fr       */
+/*   Updated: 2023/01/18 20:08:27 by ngonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ char	*ft_uitoa_base(unsigned int n, char *base);
 char	*ft_ulltoa_base(unsigned long long n, char *base);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
+void	ft_free_strs(char **strs);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);

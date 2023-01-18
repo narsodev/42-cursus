@@ -6,7 +6,7 @@
 /*   By: ngonzale <ngonzale@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 19:26:16 by ngonzale          #+#    #+#             */
-/*   Updated: 2023/01/16 21:06:51 by ngonzale         ###   ########.fr       */
+/*   Updated: 2023/01/18 20:50:42 by ngonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	ft_is_ordered(t_container *container)
 {
 	t_stack	*tmp;
 
-	ft_printf("order ");
 	if (container->stack_b)
 		return (0);
 	tmp = container->stack_a;
@@ -51,9 +50,22 @@ void	ft_radix(t_container *container, int size)
 		while (container->stack_b)
 			ft_pa(container, 1);
 		i++;
-		ft_printf("eo\n");
 	}
-	ft_printf("termino\n");
+}
+
+void	ft_order(t_container *container, int size)
+{
+	if (size == 2)
+	{
+		if (!ft_is_ordered(container))
+			ft_sa(container, 1);
+	}
+	else if (size == 3)
+		ft_sort_three(container);
+	else if (size == 5)
+		ft_sort_five(container);
+	else
+		ft_radix(container, size);
 }
 
 int	ft_count_words(char *str, char c)
@@ -77,16 +89,10 @@ int	ft_count_words(char *str, char c)
 	return (count);
 }
 
-void ft_void(void){
-	system("leaks -q push_swap");
-}
-
 int	main(int argc, char **argv)
 {
-	atexit(ft_void);
 	t_container	*container;
 	char		**strs;
-	int			i;
 
 	strs = ft_get_strs(argc, argv);
 	if (!strs)
@@ -98,18 +104,15 @@ int	main(int argc, char **argv)
 	}
 	container = ft_create_container(strs);
 	if (!container)
-		return (EXIT_FAILURE);
-	if (argc == 2)
-		ft_radix(container, ft_count_words(argv[1], ' '));
-	else
-		ft_radix(container, argc - 1);
-	i = 0;
-	while (strs[i])
 	{
-		free(strs[i]);
-		i++;
+		ft_free_strs(strs);
+		return (EXIT_FAILURE);
 	}
-	free(strs);
+	if (argc == 2)
+		ft_order(container, ft_count_words(argv[1], ' '));
+	else
+		ft_order(container, argc - 1);
+	ft_free_strs(strs);
 	ft_free_container(container);
 	return (0);
 }

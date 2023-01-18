@@ -6,7 +6,7 @@
 /*   By: ngonzale <ngonzale@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 19:30:33 by ngonzale          #+#    #+#             */
-/*   Updated: 2023/01/16 20:53:08 by ngonzale         ###   ########.fr       */
+/*   Updated: 2023/01/18 19:54:59 by ngonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,6 @@ void		ft_free_stack(t_stack *stack);
 
 // Sort
 void		ft_sort_three(t_container *container);
+void		ft_sort_five(t_container *container);
 
 #endif

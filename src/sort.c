@@ -6,7 +6,7 @@
 /*   By: ngonzale <ngonzale@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 21:52:20 by ngonzale          #+#    #+#             */
-/*   Updated: 2023/01/01 13:15:45 by ngonzale         ###   ########.fr       */
+/*   Updated: 2023/01/18 20:16: by ngonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,19 @@ void	ft_sort_three(t_container *container)
 		ft_ra(container, 1);
 		ft_sa(container, 1);
 	}
+}
+
+void	ft_sort_five(t_container *container)
+{
+	while (!(container->stack_a->index == 1 || container->stack_a->index == 2))
+		ft_ra(container, 1);
+	ft_pb(container, 1);
+	while (!(container->stack_a->index == 1 || container->stack_a->index == 2))
+		ft_ra(container, 1);
+	ft_pb(container, 1);
+	ft_sort_three(container);
+	ft_pa(container, 1);
+	ft_pa(container, 1);
+	if (container->stack_a->index != 0)
+		ft_sa(container, 1);
 }

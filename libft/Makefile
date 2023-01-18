@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ngonzale <ngonzale@student.42malaga.com>   +#+  +:+       +#+         #
+#    By: ngonzale <ngonzale@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/20 17:51:10 by ngonzale          #+#    #+#              #
-#    Updated: 2022/06/22 19:20:55 by ngonzale         ###   ########.fr        #
+#    Updated: 2023/01/18 20:52:20 by ngonzale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ STR_DIR		:= ft_str
 STR_NAMES	:= ft_split ft_strchr ft_strdup ft_striteri ft_strjoin \
 		  	   ft_strlcat ft_strlcpy ft_strlen ft_strmapi ft_strncmp \
 			   ft_strnstr ft_strrchr ft_strtrim ft_substr \
-			   ft_strsome ft_strevery
+			   ft_strsome ft_strevery ft_free_strs
 STR_FILES	:= $(addprefix $(STR_DIR)/, $(STR_NAMES)) 
 
 TO_DIR		:= ft_to
