@@ -1,22 +1,13 @@
 #include <iostream>
 #include <fstream>
 
-int main(int argc, char **argv)
-{
-  if (argc != 4) {
-    std::cerr << "Usage: ./replace <filename> <string1> <string2>" << std::endl;
-    return 1;
-  }
-
-  std::ifstream inputstream(argv[1]);
+int sed(std::string filename, std::string s1, std::string s2) {
+  std::ifstream inputstream(filename.c_str());
   if (!inputstream.is_open()) {
     std::cerr << "Error: could not open file" << std::endl;
     return 1;
   }
 
-  std::string filename(argv[1]);
-  std::string s1(argv[2]);
-  std::string s2(argv[3]);
   std::string line;
   std::string content;
 
@@ -49,4 +40,24 @@ int main(int argc, char **argv)
   outputstream.close();
 
   return 0;
+}
+
+int main(int argc, char **argv)
+{
+  if (argc != 4) {
+    std::cerr << "Usage: ./replace <filename> <string1> <string2>" << std::endl;
+    return 1;
+  }
+
+  std::ifstream inputstream(argv[1]);
+  if (!inputstream.is_open()) {
+    std::cerr << "Error: could not open file" << std::endl;
+    return 1;
+  }
+
+  std::string filename(argv[1]);
+  std::string s1(argv[2]);
+  std::string s2(argv[3]);
+
+  return (sed(filename, s1, s2));
 }
