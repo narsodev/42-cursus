@@ -1,0 +1,48 @@
+version: "3.1"
+
+# todo check env var of wordpresss containing a path
+
+services:
+  mariadb:
+    container_name: mariadb
+    build: "./srcs/requirements/mariadb"
+    # volumes:
+    #   - ./data/mariadb:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: user
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: password
+    networks:
+      - network
+
+  wordpress:
+    container_name: wordpress
+    build: "./srcs/requirements/wordpress"
+    depends_on:
+      - mariadb
+    # volumes:
+    #   - ./data/wordpress:/usr/share/wordpress
+    environment:
+      WORDPRESS_DB_HOST: mariadb
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: password
+      WORDPRESS_DB_NAME: wordpress
+    networks:
+      - network
+
+  nginx:
+    container_name: nginx
+    build: "./srcs/requirements/nginx"
+    ports:
+      - "443:443"
+    depends_on:
+      - wordpress
+    # volumes:
+    #   - ./data/wordpress:/usr/share/wordpress:ro
+    networks:
+      - network
+
+networks:
+  network:
+    # driver: bridge
