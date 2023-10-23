@@ -6,8 +6,10 @@ services:
   mariadb:
     container_name: mariadb
     build: "./srcs/requirements/mariadb"
-    # volumes:
-    #   - ./data/mariadb:/var/lib/mysql
+    volumes:
+      - type: volume
+        source: db
+        target: /var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: user
       MYSQL_DATABASE: wordpress
@@ -21,8 +23,10 @@ services:
     build: "./srcs/requirements/wordpress"
     depends_on:
       - mariadb
-    # volumes:
-    #   - ./data/wordpress:/usr/share/wordpress
+    volumes:
+      - type: volume
+        source: wordpress
+        target: /usr/share/wordpress
     environment:
       WORDPRESS_DB_HOST: mariadb
       WORDPRESS_DB_USER: wordpress
@@ -38,10 +42,16 @@ services:
       - "443:443"
     depends_on:
       - wordpress
-    # volumes:
-    #   - ./data/wordpress:/usr/share/wordpress:ro
+    volumes:
+      - type: volume
+        source: wordpress
+        target: /usr/share/wordpress
     networks:
       - network
+
+volumes:
+  db:
+  wordpress:
 
 networks:
   network:
