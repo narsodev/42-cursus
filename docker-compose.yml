@@ -29,6 +29,7 @@ services:
         - WP_DB_NAME=${DB_NAME}
         - WP_DB_USER=${DB_USER}
         - WP_DB_PASSWORD=${DB_PASSWORD}
+        - WP_CONTENT_DIR=${WP_CONTENT_DIR}
     depends_on:
       - mariadb
     volumes:
@@ -54,7 +55,11 @@ services:
 
   ftp:
     container_name: ftp
-    build: "./srcs/requirements/ftp"
+    build:
+      context: "./srcs/requirements/ftp"
+      args:
+        - FTP_USER=${FTP_USER}
+        - FTP_PASSWORD=${FTP_PASSWORD}
     ports:
       - "21:21"
       - "21000-21010:21000-21010"
@@ -63,7 +68,7 @@ services:
     volumes:
       - type: volume
         source: wordpress
-        target: /usr/share/wordpress
+        target: /var/ftp
     networks:
       - network
 

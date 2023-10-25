@@ -1,16 +1,16 @@
 FROM debian:buster
 
+ARG FTP_USER=ftp_user
+ARG FTP_PASSWORD=ftp_pwd
+
 RUN \
   apt-get update && \
   apt-get install -y vsftpd
 
-RUN mkdir /usr/share/wordpress
-RUN echo /usr/sbin/nologin >> /etc/shells && useradd -d /usr/share/wordpress wordpress -s /usr/sbin/nologin && chown -R wordpress:wordpress /usr/share/wordpress && echo "wordpress:wordpress" | chpasswd
+COPY tools/init.sh /init.sh
+RUN chmod +x /init.sh && /init.sh /var/ftp $FTP_USER $FTP_PASSWORD
 
 COPY config/vsftpd.conf /etc/vsftpd.conf
-RUN echo wordpress > /etc/vsftpd.chroot_list
-
-RUN mkdir -p /var/ftp /var/run/vsftpd/empty
 
 EXPOSE 21
 EXPOSE 21000-21010
