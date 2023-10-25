@@ -5,33 +5,36 @@ version: "3.1"
 services:
   mariadb:
     container_name: mariadb
-    build: "./srcs/requirements/mariadb"
+    build:
+      context: "./srcs/requirements/mariadb"
+      args:
+        - DB_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+        - DB_NAME=${DB_NAME}
+        - DB_USER=${DB_USER}
+        - DB_USER_HOST=${DB_USER_HOST}
+        - DB_PASSWORD=${DB_PASSWORD}
     volumes:
       - type: volume
         source: db
         target: /var/lib/mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: user
-      MYSQL_DATABASE: wordpress
-      MYSQL_USER: wordpress
-      MYSQL_PASSWORD: password
     networks:
       - network
 
   wordpress:
     container_name: wordpress
-    build: "./srcs/requirements/wordpress"
+    build:
+      context: "./srcs/requirements/wordpress"
+      args:
+        - WP_DB_HOST=${DB_HOST}
+        - WP_DB_NAME=${DB_NAME}
+        - WP_DB_USER=${DB_USER}
+        - WP_DB_PASSWORD=${DB_PASSWORD}
     depends_on:
       - mariadb
     volumes:
       - type: volume
         source: wordpress
         target: /usr/share/wordpress
-    environment:
-      WORDPRESS_DB_HOST: mariadb
-      WORDPRESS_DB_USER: wordpress
-      WORDPRESS_DB_PASSWORD: password
-      WORDPRESS_DB_NAME: wordpress
     networks:
       - network
 
@@ -70,4 +73,3 @@ volumes:
 
 networks:
   network:
-    # driver: bridge

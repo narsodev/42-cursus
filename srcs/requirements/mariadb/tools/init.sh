@@ -1,4 +1,10 @@
 #!/bin/sh
+DB_ROOT_PASSWORD=$1
+DB_NAME=$2
+DB_USER=$3
+DB_USER_HOST=$4
+DB_PASSWORD=$5
+
 service mysql start
 
 mysql_secure_installation << EOF
@@ -13,11 +19,11 @@ y
 EOF
 
 mysql -u root << EOF
-CREATE DATABASE wordpress;
+CREATE DATABASE $DB_NAME;
 GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP,ALTER
-ON wordpress.*
-TO wordpress@'%wordpress.%network'
-IDENTIFIED BY 'password';
+ON $DB_NAME.*
+TO $DB_USER@'$DB_USER_HOST'
+IDENTIFIED BY '$DB_PASSWORD';
 FLUSH PRIVILEGES;
 EOF
 
