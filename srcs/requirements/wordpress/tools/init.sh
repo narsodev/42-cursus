@@ -1,9 +1,9 @@
 echo "
 <?php
-define('DB_NAME', 'wordpress');
-define('DB_USER', 'wordpress');
-define('DB_PASSWORD', 'password');
-define('DB_HOST', 'mariadb');
+define('DB_NAME', '$DB_NAME');
+define('DB_USER', '$DB_USER');
+define('DB_PASSWORD', '$DB_PASSWORD');
+define('DB_HOST', '$DB_HOST');
 define('WP_CONTENT_DIR', '/var/lib/wordpress/wp-content');
 ?>
 " > /etc/wordpress/config-default.php

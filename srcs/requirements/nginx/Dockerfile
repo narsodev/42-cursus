@@ -1,7 +1,5 @@
 FROM debian:buster
 
-ENV ROOT_PASSWORD=root
-
 RUN \
   apt-get update && \
   apt-get install -y openssl nginx
@@ -11,7 +9,7 @@ RUN openssl req -newkey rsa:2048 -x509 \
   /etc/ssl/certs/ngonzale.crt -keyout \
   /etc/ssl/private/ngonzale.key -subj "/C=ES/L=Malaga/CN=ngonzale.42.fr"
 
-COPY ./config/nginx.conf /etc/nginx/nginx.conf
+COPY config/nginx.conf /etc/nginx/nginx.conf
 
 EXPOSE 443
 
