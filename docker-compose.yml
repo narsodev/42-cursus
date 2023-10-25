@@ -49,6 +49,21 @@ services:
     networks:
       - network
 
+  ftp:
+    container_name: ftp
+    build: "./srcs/requirements/ftp"
+    ports:
+      - "21:21"
+      - "21000-21010:21000-21010"
+    depends_on:
+      - wordpress
+    volumes:
+      - type: volume
+        source: wordpress
+        target: /usr/share/wordpress
+    networks:
+      - network
+
 volumes:
   db:
   wordpress:
