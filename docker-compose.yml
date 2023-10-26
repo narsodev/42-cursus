@@ -29,7 +29,6 @@ services:
         - WP_DB_NAME=${DB_NAME}
         - WP_DB_USER=${DB_USER}
         - WP_DB_PASSWORD=${DB_PASSWORD}
-        - WP_CONTENT_DIR=${WP_CONTENT_DIR}
     depends_on:
       - mariadb
     volumes:

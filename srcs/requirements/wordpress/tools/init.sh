@@ -14,3 +14,7 @@ define('DB_HOST', '$WP_DB_HOST');
 define('WP_CONTENT_DIR', '/var/lib/wordpress/wp-content');
 ?>
 " > /etc/wordpress/config-default.php
+
+groupadd wp && useradd -g wp wp
+
+mkdir /run/php
