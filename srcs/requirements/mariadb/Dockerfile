@@ -15,6 +15,4 @@ COPY config/my.cnf /etc/mysql/my.cnf
 COPY tools/init.sh /init.sh
 RUN chmod +x /init.sh && /init.sh $DB_ROOT_PASSWORD $DB_NAME $DB_USER $DB_USER_HOST $DB_PASSWORD
 
-EXPOSE 3306
-
 CMD ["mysqld"]

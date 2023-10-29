@@ -14,6 +14,3 @@ COPY config/nginx.conf /etc/nginx/nginx.conf
 EXPOSE 443
 
 CMD ["nginx", "-g", "daemon off;"]
-# cd /usr/share/wordpress/
-# php -S 127.0.0.1:80
-# mariadb --host mariadb-ngonzale
