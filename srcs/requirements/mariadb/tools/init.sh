@@ -31,3 +31,7 @@ TO $DB_USER@'$DB_USER_HOST'
 IDENTIFIED BY '$DB_PASSWORD';
 FLUSH PRIVILEGES;
 EOF
+
+sleep 3
+
+kill $(cat /run/mysqld/mysqld.pid)
