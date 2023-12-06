@@ -1,3 +1,5 @@
+all: build up
+
 build: 
 	docker-compose -f srcs/docker-compose.yml build
 
@@ -8,8 +10,6 @@ down:
 	docker-compose -f srcs/docker-compose.yml down
 
 re: down up
-
-all: build up
 
 clean:
 	docker system prune -a
