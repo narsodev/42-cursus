@@ -19,6 +19,7 @@ services:
         target: /var/lib/mysql
     networks:
       - network
+    restart: always
 
   wordpress:
     container_name: wordpress
@@ -46,6 +47,7 @@ services:
         target: /usr/share/wordpress
     networks:
       - network
+    restart: always
 
   nginx:
     container_name: nginx
@@ -60,6 +62,7 @@ services:
         target: /usr/share/wordpress
     networks:
       - network
+    restart: always
 
   ftp:
     container_name: ftp
@@ -79,10 +82,21 @@ services:
         target: /var/ftp
     networks:
       - network
+    restart: always
 
 volumes:
   db:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/ngonzale/data/db
+      o: bind
   wordpress:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/ngonzale/data/wordpress
+      o: bind
 
 networks:
   network:
