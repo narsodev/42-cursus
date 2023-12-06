@@ -10,7 +10,7 @@ service mysql start
 sleep 3
 
 mysql -u root << EOF
-ALTER USER 'root'@'localhost' IDENTIFIED BY '$DB_ROOT_PASSWORD';
+SET PASSWORD FOR 'root'@'localhost' = PASSWORD('$DB_ROOT_PASSWORD')
 FLUSH PRIVILEGES;
 EOF
 
@@ -34,4 +34,4 @@ EOF
 
 sleep 3
 
-kill $(cat /run/mysqld/mysqld.pid)
+service mysql stop
