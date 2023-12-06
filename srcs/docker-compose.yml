@@ -6,7 +6,7 @@ services:
   mariadb:
     container_name: mariadb
     build:
-      context: "./srcs/requirements/mariadb"
+      context: "./requirements/mariadb"
       args:
         - DB_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
         - DB_NAME=${DB_NAME}
@@ -32,7 +32,7 @@ services:
       - WP_USER_EMAIL=${WP_USER_EMAIL}
       - WP_USER_PASSWORD=${WP_USER_PASSWORD}
     build:
-      context: "./srcs/requirements/wordpress"
+      context: "./requirements/wordpress"
       args:
         - WP_DB_HOST=${DB_HOST}
         - WP_DB_NAME=${DB_NAME}
@@ -49,7 +49,7 @@ services:
 
   nginx:
     container_name: nginx
-    build: "./srcs/requirements/nginx"
+    build: "./requirements/nginx"
     ports:
       - "443:443"
     depends_on:
@@ -64,7 +64,7 @@ services:
   ftp:
     container_name: ftp
     build:
-      context: "./srcs/requirements/ftp"
+      context: "./requirements/ftp"
       args:
         - FTP_USER=${FTP_USER}
         - FTP_PASSWORD=${FTP_PASSWORD}
